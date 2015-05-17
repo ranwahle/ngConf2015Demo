@@ -1,0 +1,26 @@
+{
+  "name": "ngConfDemo",
+  "version": "0.0.0",
+  "authors": [
+    "ranwahle <ran.wahle@gmail.com>"
+  ],
+  "description": "Demo for ng-conf-il",
+  "main": "app.js",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "resolutions": {
+    "angularjs": "1.4.0-beta.1"
+  },
+  "dependencies": {
+    "angularjs": "1.4.0-beta.1"
+  }
+}

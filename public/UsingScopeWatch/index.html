@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../stylesheets/style.css"/>
+    <script src="../socket.io/socket.io.js"></script>
+    <script src="../bower_components/angularjs/angular.min.js"></script>
+    <script src="../angular-new-router/dist/router.es5.min.js"></script>
+    <script src="javascripts/app.js"></script>
+    <script src="javascripts/services/socketIoClient.js"></script>
+    <script src="javascripts/services/visitorService.js"></script>
+    <script src="javascripts/controllers/visitorController.js"></script>
+    <script src="javascripts/controllers/serviceManagementController.js"></script>
+    <script src="javascripts/controllers/waitingListController.js"></script>
+
+    <title></title>
+</head>
+<body>
+<header>
+    <ul>
+
+    </ul>
+    </header>
+<div style="clear:both;" data-ng-controller="waitingListController as controller" class="majorDisplay">
+   <span data-ng-if="controller.lastPersonToGo"
+         data-ng-bind="controller.lastPersonToGo"></span>
+</div>
+    <div data-ng-controller="visitorController as visitorController" style="clear:both;">
+        <input type="text" data-ng-model="visitorController.visitor.firstName" placeholder="First Name"/>
+        <input type="text" data-ng-model="visitorController.visitor.lastName" placeholder="Last Name"/>
+        <button data-ng-click="visitorController.enqueue()">Take a number</button>
+        <br/>
+        <span data-ng-if="visitorController.placeInLine"
+              data-ng-bind="'Your place in line is' + visitorController.placeInLine"></span>
+    </div>
+
+    <div data-ng-controller="serviceManagementController as serviceManagerController" style="float:left;">
+        Personnel:
+        <input type="text" placeholder="First name" data-ng-model="serviceManagerController.newServiceStand.firstName"/>
+        <input type="text" placeholder="Last name" data-ng-model="serviceManagerController.newServiceStand.lastName"/>
+        <button data-ng-click="serviceManagerController.addServiceStand()">Add Stand</button>
+        <ul>
+            <li data-ng-repeat="serviceStand in serviceManagerController.serviceStands">
+               <span data-ng-bind="serviceStand.firstName">
+           </span>
+                <a href="javascript:void(0);" data-ng-click="serviceManagerController.assign(serviceStand)"> <span class="glyphicon glyphicon-menu-right" aria-hidden="true" ></span></a>
+                <span data-ng-bind="serviceStand.customer.firstName + '(' + serviceStand.customer.turnNumber + ')'" data-ng-if="serviceStand.customer"></span>
+            </li>
+
+        </ul>
+    </div>
+
+
+</body>
+</html>
